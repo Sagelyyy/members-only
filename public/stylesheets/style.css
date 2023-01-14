@@ -10,6 +10,11 @@ html {
   height: 100%;
 }
 
+a {
+  text-decoration: none;
+  color: blue;
+}
+
 body {
   height: 90%;
   margin: 0;
@@ -36,7 +41,7 @@ body {
 .sign-up {
   border: 1px solid pink;
   width: 500px;
-  height: 300px;
+  height: 400px;
   background-color: var(--bright);
   border: 1px solid #ccc;
   box-shadow: 10px 10px 20px black;
@@ -56,6 +61,7 @@ body {
   flex-direction: column;
   justify-content: space-evenly;
   height: 80%;
+  padding-top: 10px;
 }
 
 .sign-up > form > label {
@@ -69,6 +75,7 @@ body {
   width: 90%;
   margin-left: 20px;
   height: 30px;
+  font-size: 1.2rem;
 }
 
 .sign-up > form > button {
@@ -89,4 +96,21 @@ body {
   background-color: green;
   box-shadow: 0 0.5em 0.5em -0.4em black;
   transform: translateY(-0.5em);
+}
+
+.new-user {
+  font-size: 0.8rem;
+  padding-bottom: 10px;
+  margin-left: 20px;
+  color: black;
+}
+
+.main-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 90vh;
+  width: 99vw;
+  font-family: "Montserrat", sans-serif;
 }

@@ -1,5 +1,25 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  if user 
+    div(class="main-content")
+      h3 Welcome #{user.username}
+      div(class="members-only-posts")
+        if posts 
+          each post in posts
+            ul 
+              li #{post.title}
+      a(href="/new-post")
+        button New Post
+  else
+    div(class="sign-up-container")
+        div(class="sign-up")
+            h3(class="title") Login to your account
+            form(action="/log-in" method="POST")
+                label(for="username") Username 
+                input(type="text" name="username" placeholder="Username")
+                label(for="password") Password 
+                input(type="password" name="password" placeholder="Password")
+                button(class="raise") Login
+                p(class="new-user") New user? 
+                  a(href="/sign-up") Sign up here
