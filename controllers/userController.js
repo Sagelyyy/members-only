@@ -11,28 +11,50 @@ exports.user_create_get = (req, res, next) => {
   });
 };
 
-exports.user_create_post = (req, res, next) => {
-  if (req.body.password === req.body.password_confirm) {
-    bcrypt.hash(req.body.password, 10, (err, hashPass) => {
-      if (err) {
-        return next(err);
-      }
-      const user = new User({
-        username: req.body.username,
-        password: hashPass,
-        email: req.body.email,
-        avatar: `/images/${req.file.filename}`,
-      }).save((err) => {
+exports.user_create_post = [
+  body("email", "Email must not be empty")
+    .trim()
+    .isLength({ min: 1 }, { max: 10 })
+    .escape(),
+  body("username", "Username must not be empty")
+    .trim()
+    .isLength({ min: 1 }, { max: 10 })
+    .escape(),
+  body("password", "Password must not be empty")
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res.render("sign-up", {
+        title: "Sign up",
+        errors: errors.array(),
+      });
+      return;
+    }
+    if (req.body.password === req.body.password_confirm) {
+      bcrypt.hash(req.body.password, 10, (err, hashPass) => {
         if (err) {
           return next(err);
         }
-        res.redirect("/");
+        const user = new User({
+          username: req.body.username,
+          password: hashPass,
+          email: req.body.email,
+          avatar: `/images/default.png`,
+        }).save((err) => {
+          if (err) {
+            return next(err);
+          }
+          res.redirect("/");
+        });
       });
-    });
-  } else {
-    throw new Error("Passwords must match");
-  }
-};
+    } else {
+      throw new Error("Passwords must match");
+    }
+  },
+];
 
 exports.user_logout = (req, res, next) => {
   req.logout(function (err) {

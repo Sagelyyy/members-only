@@ -1,7 +1,10 @@
 extends layout
 include mixins/post
+include mixins/validation
 
 block content
+  if errors
+    +errors(errors)
   if user 
     div(class="main-content")
       h3 Welcome #{user.username}

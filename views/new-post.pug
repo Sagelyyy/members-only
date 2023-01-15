@@ -1,6 +1,9 @@
 extends layout 
+include mixins/validation
 
-block content 
+block content
+    if errors
+        +errors(errors)
     if user
         div(class="main-content")
             div(class="new-post-container")

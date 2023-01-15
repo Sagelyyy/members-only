@@ -245,3 +245,24 @@ button:hover {
   border: 1px solid #ccc;
   box-shadow: 10px 10px 20px black;
 }
+
+.errors-container {
+  margin-top: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 10px 10px 20px black;
+  width: 300px;
+  height: auto;
+  background-color: var(--bright);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+  position: absolute;
+  left: 42%;
+  padding-bottom: 20px;
+}
+
+li {
+  color: var(--contrast);
+  margin-left: 20px;
+}

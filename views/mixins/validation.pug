@@ -1,0 +1,6 @@
+mixin errors(errors)
+    div(class="errors-container")
+        h3(class="title") Error: 
+        ul
+        for error in errors 
+            li(class="error") #{error.msg}

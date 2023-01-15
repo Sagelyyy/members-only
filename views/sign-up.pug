@@ -1,6 +1,9 @@
-extends layout 
+extends layout
+include mixins/validation
 
-block content 
+block content
+    if errors
+        +errors(errors)
     div(class="sign-up-container")
         div(class="sign-up")
             h3(class="title") Create your account
