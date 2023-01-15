@@ -1,16 +1,21 @@
 extends layout
+include mixins/post
 
 block content
   if user 
     div(class="main-content")
       h3 Welcome #{user.username}
+      div(class="user-buttons")
+        a(href="/new-post")
+          button(class="new-post") New
+        a(href="/log-out")
+          button(class="logout") Logout
+        a(href=user.url)
+          button(class="profile") Profile
       div(class="members-only-posts")
         if posts 
           each post in posts
-            ul 
-              li #{post.title}
-      a(href="/new-post")
-        button New Post
+            +post(post)
   else
     div(class="sign-up-container")
         div(class="sign-up")

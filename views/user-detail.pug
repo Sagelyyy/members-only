@@ -1,0 +1,20 @@
+extends layout 
+block content
+    if user
+        div(class="main-content")
+            h3 #{title}
+            img(class="post-avatar" src=profile.avatar)
+            if(post_count == 1)
+                p #{profile.username} has posted #{post_count} time
+            else 
+                p #{profile.username} has posted #{post_count} times
+            div(class="user-buttons")
+                a(href="/")
+                    button Home
+                a(href="/log-out")
+                    button(class="logout") Logout
+    else 
+        div(class="main-content")
+            h3 Please log in to view users
+            a(href="/")
+                button Home

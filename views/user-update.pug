@@ -1,0 +1,22 @@
+extends layout 
+block content
+    if user
+        div(class="main-content")
+            h3 #{title}
+            div(class="user-buttons")
+                a(href="/")
+                    button Home
+                a(href="/log-out")
+                    button(class="logout") Logout
+            div(class="update-form-container")
+                form(method="POST" enctype="multipart/form-data")
+                    label(for="username") Username 
+                    input(type="text" name="username" value=user.username)  
+                    label(for="file") Image: 
+                    input(name="file" type="file" value=(undefined===user ? '': user.avatar))
+                    button Submit
+    else 
+        div(class="main-content")
+            h3 Please log in to view users
+            a(href="/")
+                button Home

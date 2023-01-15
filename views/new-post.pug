@@ -1,0 +1,18 @@
+extends layout 
+
+block content 
+    if user
+        div(class="main-content")
+            div(class="new-post-container")
+                h3(class="title") #{title}
+                form(action="" method="POST")
+                    label(for="title") Title
+                    input(type="text" name="title" placeholder="New Title") 
+                    label(for="text") Text 
+                    textarea(name="text", cols="1", rows="6")
+                    button Submit
+    else 
+        div(class="main-content")
+            h3 Please log in to post
+            a(href="/")
+                button Home

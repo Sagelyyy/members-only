@@ -1,0 +1,10 @@
+mixin post(post)
+    div(class="post-container")
+        h3(class="post-title title") #{post.title}
+        div(class="post-user-data")
+            img(class="post-avatar" src=post.user.avatar)
+            h4(class="post-author") 
+                a(href=post.user.url) #{post.user.username}
+        h4(class="post-body") #{post.text}
+        p(class="post-date") Posted at #{post.date}
+        br
