@@ -266,3 +266,33 @@ li {
   color: var(--contrast);
   margin-left: 20px;
 }
+
+.admin-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: var(--dark-bg);
+  padding-right: 5px;
+  padding-top: 5px;
+}
+
+.admin-bar > a {
+  text-decoration: none;
+  color: black;
+  cursor: default;
+  height: fit-content;
+}
+
+.admin-bar > a > span {
+  background-color: var(--highlight);
+  height: fit-content;
+  border-radius: 30%;
+  transition: all 0.5s;
+  align-self: end;
+}
+
+.admin-bar > a > span:hover {
+  scale: 1.2;
+  cursor: pointer;
+  background-color: var(--contrast);
+}

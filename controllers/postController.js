@@ -1,4 +1,3 @@
-const User = require("../models/User");
 const Post = require("../models/Post");
 const { body, validationResult } = require("express-validator");
 
@@ -43,3 +42,33 @@ exports.create_post_post = [
     }
   },
 ];
+
+exports.delete_get = (req, res, next) => {
+  if (req.user && req.user.admin == true) {
+    Post.findById(req.params.id).exec(function (err, post) {
+      if (err) {
+        return next(err);
+      }
+      res.render("delete-post", {
+        user: req.user,
+        post,
+      });
+    });
+  } else {
+    res.status(403).send("403 forbidden");
+  }
+};
+
+exports.delete_post = (req, res, next) => {
+  if (req.user && req.user.admin == true) {
+    Post.findByIdAndRemove(req.body.postid, (err) => {
+      if (err) {
+        return next(err);
+      }
+      res.redirect("/");
+      return;
+    });
+  } else {
+    res.status(403).send("403 forbidden");
+  }
+};

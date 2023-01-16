@@ -44,5 +44,7 @@ router.post("/user/:id", upload.single("file"), userController.user_update);
 // Message Routes
 router.get("/new-post", postController.create_post_get);
 router.post("/new-post", postController.create_post_post);
+router.get("/post/:id/delete", postController.delete_get);
+router.post("/post/:id/delete", postController.delete_post);
 
 module.exports = router;

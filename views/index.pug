@@ -18,7 +18,7 @@ block content
       div(class="members-only-posts")
         if posts 
           each post in posts
-            +post(post)
+            +post(post, user)
   else
     div(class="sign-up-container")
         div(class="sign-up")

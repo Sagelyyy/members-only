@@ -1,10 +1,14 @@
-mixin post(post)
+mixin post(post, currUser)
     div(class="post-container")
-        h3(class="post-title title") #{post.title}
+        div(class="admin-bar")
+            h3(class="post-title title") #{post.title}
+            if currUser.admin==true
+                a(href=post.url + "/delete")
+                    span(class="material-symbols-outlined") delete
         div(class="post-user-data")
             img(class="post-avatar" src=post.user.avatar)
             h4(class="post-author") 
                 a(href=post.user.url) #{post.user.username}
-        h4(class="post-body") #{post.text}
+        h4(class="post-body") #{post.unescape}
         p(class="post-date") Posted at #{post.date}
         br

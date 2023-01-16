@@ -1,0 +1,15 @@
+extends layout 
+include mixins/validation
+
+block content
+    if errors
+        +errors(errors)
+    if user
+        if user.admin==true
+            div(class="main-content")
+                h3 Are you sure you want to delete this post?
+                form(method="POST")
+                    input(type='hidden' name="postid" required="true" value=post._id)
+                    button Delete
+        else 
+            h1 No admin privileges
